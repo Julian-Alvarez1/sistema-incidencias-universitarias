@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">Sistema de Gestión de Incidencias</title>
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/dashboard}">Sistema de Incidencias</a>
+        <div class="navbar-nav ms-auto">
+            <span class="navbar-text me-3" th:text="${'Usuario: ' + usuario.nombre}"></span>
+            <span class="navbar-text me-3" th:text="${'(' + usuario.rol.nombre + ')'}"></span>
+            <a class="btn btn-light btn-sm" th:href="@{/logout}">Cerrar sesión</a>
+        </div>
+    </div>
+</nav>
+
+<main class="container mt-4">
+    <div th:if="${error}" class="alert alert-danger alert-dismissible fade show">
+        <span th:text="${error}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    <div th:if="${logout}" class="alert alert-info alert-dismissible fade show">
+        <span th:text="${logout}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+
+    <th:block th:replace="~{fragment :: content}"></th:block>
+</main>
+
+<script th:src="@{/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
